@@ -1,0 +1,44 @@
+# You can keep both properties and YAML; Boot merges them.
+# This YAML shows sensible defaults for prod-like runs.
+spring:
+  jpa:
+    properties:
+      hibernate:
+        jdbc:
+          time_zone: UTC
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  jackson:
+    time-zone: UTC
+  lifecycle:
+    timeout-per-shutdown-phase: 20s
+  mail:
+    host: localhost
+    port: 1025
+    properties:
+      mail:
+        smtp:
+          auth: false
+          starttls.enable: false
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
+logging:
+  level:
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+
+# Uncomment and edit if you want Redis cache later:
+# spring:
+#   data:
+#     redis:
+#       host: localhost
+#       port: 6379
+
+reminders:
+  poll-ms: 5000
